@@ -19,13 +19,17 @@ const AddExpense: React.FC = () => {
   const { addExpense } = useExpenseContext();
   const onSubmit: SubmitHandler<expenseType> = (data) => {
     // console.log(data);
-    addExpense({
-      ...data,
-      date: formatDate(data.date),
-      title: data.title[0].toUpperCase() + data.title.slice(1),
-    });
-    toast.success('Expense added successfully!');
-    reset();
+    if (addExpense) {
+      addExpense({
+        ...data,
+        date: formatDate(data.date),
+        title: data.title[0].toUpperCase() + data.title.slice(1),
+      });
+      toast.success('Expense added successfully!');
+      reset();
+    } else {
+      toast.error('Failed to add expense: addExpense is undefined.');
+    }
   };
   return (
     <div className="bg-(--primary-bgColor) p-5 flex text-white w-full text-xl flex-col gap-6 rounded-md">
