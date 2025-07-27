@@ -26,13 +26,13 @@ export default function SimpleBarChart() {
         {
           data: days,
           tickLabelStyle: { fill: '#ffffff' },
-          tickLine: { stroke: 'transparent' },
+          // tickLine: { stroke: 'transparent' },
         },
       ]}
       yAxis={[
         {
           tickLabelStyle: { fill: 'transparent' },
-          tickLine: { stroke: 'transparent' },
+          // tickLine: { stroke: 'transparent' },
         },
       ]}
     />
