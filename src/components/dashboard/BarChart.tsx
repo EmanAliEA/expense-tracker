@@ -1,40 +1,36 @@
+import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useExpenseContext } from '../../context/useExpenseContext';
+import { getCategoryTotalsByMonth } from '../../context/expenseFunctions';
 
-export default function SimpleBarChart() {
+export default function StackedBarChart() {
   const { expenses } = useExpenseContext();
 
-  // Group by day and sum amounts
-  const dayTotals: Record<string, number> = {};
-  expenses.forEach((exp) => {
-    // exp.date should be a string like '2024-04-20' or similar
-    const date = new Date(exp.date);
-    // Format as 'YYYY-MM-DD' for x-axis
-    const day = date.toISOString().split('T')[0];
-    dayTotals[day] = (dayTotals[day] || 0) + Number(exp.amount);
-  });
-
-  const days = Object.keys(dayTotals);
-  const amounts = Object.values(dayTotals);
+  // Get monthly totals for each category
+  const { foodData, transportData, utilitiesData, months } =
+    getCategoryTotalsByMonth(expenses);
 
   return (
     <BarChart
-      borderRadius={3}
-      height={200}
-      series={[{ data: amounts, label: 'uv', type: 'bar' }]}
-      xAxis={[
+      height={300}
+      width={500}
+      series={[
+        { data: foodData, label: 'Food', id: 'foodId', stack: 'total' },
         {
-          data: days,
-          tickLabelStyle: { fill: '#ffffff' },
-          // tickLine: { stroke: 'transparent' },
+          data: transportData,
+          label: 'Transport',
+          id: 'transportId',
+          stack: 'total',
+        },
+        {
+          data: utilitiesData,
+          label: 'Utilities',
+          id: 'utilitiesId',
+          stack: 'total',
         },
       ]}
-      yAxis={[
-        {
-          tickLabelStyle: { fill: 'transparent' },
-          // tickLine: { stroke: 'transparent' },
-        },
-      ]}
+      xAxis={[{ data: months, scaleType: 'band' }]}
+      yAxis={[{ width: 60 }]}
     />
   );
 }

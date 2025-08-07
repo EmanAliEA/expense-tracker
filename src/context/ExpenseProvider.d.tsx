@@ -1,7 +1,7 @@
 export type expenseType = {
   id?: number;
   title: string;
-  category: string;
+  category: 'Food' | 'Transport' | 'Utilities';
   amount: number;
   date: string;
 };

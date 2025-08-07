@@ -36,3 +36,65 @@ export function getLocalStorage(): ExpenseContextType {
   }
   return { balance: 0, expenses: [] }; // Return default structure if nothing is found
 }
+export function clearLocalStorage() {
+  localStorage.removeItem(LOCAL_STORAGE_KEY);
+}
+
+export function getCategoryIcon(category: string): string {
+  switch (category) {
+    case 'Food':
+      return '/foodIcon.png';
+    case 'Transport':
+      return '/carIcon.png';
+    case 'Utilities':
+      return '/utilitiesIcon.png';
+    default:
+      return '❓';
+  }
+}
+
+// export function getCategoryTotalsByMonth(expenses) {
+//   const categoryMap = {
+//     Food: [],
+//     Transport: [],
+//     Utilities: [],
+//   };
+
+//   const monthLabels: string[] = [];
+
+//   // Group expenses by month and category
+//   const grouped = {};
+
+//   expenses.forEach((expense: expenseType) => {
+//     const date = new Date(expense.date);
+//     const month = date.toLocaleString('default', { month: 'short' });
+//     const yearMonth = `${month} ${date.getFullYear()}`;
+
+//     if (!grouped[yearMonth]) {
+//       grouped[yearMonth] = {
+//         Food: 0,
+//         Transport: 0,
+//         Utilities: 0,
+//       };
+//       monthLabels.push(yearMonth);
+//     }
+
+//     if (grouped[yearMonth][expense.category] !== undefined) {
+//       grouped[yearMonth][expense.category] += expense.amount;
+//     }
+//   });
+
+//   // Fill category arrays
+//   monthLabels.forEach((month) => {
+//     categoryMap.Food.push(grouped[month].Food || 0);
+//     categoryMap.Transport.push(grouped[month].Transport || 0);
+//     categoryMap.Utilities.push(grouped[month].Utilities || 0);
+//   });
+
+//   return {
+//     foodData: categoryMap.Food,
+//     transportData: categoryMap.Transport,
+//     utilitiesData: categoryMap.Utilities,
+//     months: monthLabels,
+//   };
+// }
