@@ -5,7 +5,7 @@ import TransactionList from './transactions/TransactionList';
 
 const AppLayout: React.FC = () => {
   return (
-    <div className="w-[60%] flex flex-col justify-center p-5 rounded-md text-white  mx-auto gap-4 bg-[#0e1217]">
+    <div className="w-[60%] flex flex-col justify-center p-5  shadow-md/30 rounded-md text-white  mx-auto gap-4 bg-[#0e1217]">
       <Dashboard />
       <AddExpense />
       <p className="text-2xl">Recent Transactions</p>

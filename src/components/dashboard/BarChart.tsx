@@ -13,7 +13,7 @@ export default function StackedBarChart() {
   return (
     <BarChart
       height={300}
-      width={500}
+      width={300}
       series={[
         { data: foodData, label: 'Food', id: 'foodId', stack: 'total' },
         {
