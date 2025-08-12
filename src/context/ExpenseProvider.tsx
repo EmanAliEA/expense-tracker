@@ -10,17 +10,12 @@ const ExpenseContext = createContext({} as ExpenseContextType);
 const initialExpense = getLocalStorage();
 const ExpenseProvider: React.FC<Props> = (props) => {
   const [balance, setBalance] = useState<number>(initialExpense.balance);
-  const [currentID, setCurrentID] = useState<number>(0);
   const [expenses, setExpenses] = useState<expenseType[]>(
     initialExpense.expenses
   );
   const addExpense = (expense: expenseType) => {
-    setExpenses((prevExpenses) => [
-      ...prevExpenses,
-      { id: currentID, ...expense },
-    ]);
+    setExpenses((prevExpenses) => [...prevExpenses, { ...expense }]);
     setBalance((prev) => prev + +expense.amount);
-    setCurrentID((prevID) => prevID + 1);
   };
   useEffect(() => {
     setLocalStorage({ balance, expenses });

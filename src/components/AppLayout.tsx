@@ -2,6 +2,7 @@ import React from 'react';
 import Dashboard from './dashboard/Dashboard';
 import AddExpense from './AddExpense';
 import TransactionList from './transactions/TransactionList';
+import { ToastContainer } from 'react-toastify';
 
 const AppLayout: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const AppLayout: React.FC = () => {
       <AddExpense />
       <p className="text-2xl">Recent Transactions</p>
       <TransactionList />
+      <ToastContainer />
     </div>
   );
 };

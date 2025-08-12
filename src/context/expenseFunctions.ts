@@ -1,4 +1,8 @@
-import type { ExpenseContextType, expenseType } from './ExpenseProvider.d';
+import type {
+  ExpenseContextType,
+  expenseType,
+  yearMonth,
+} from './ExpenseProvider.d';
 const LOCAL_STORAGE_KEY = 'expenses';
 
 // format date  to April 20, 2024
@@ -53,48 +57,59 @@ export function getCategoryIcon(category: string): string {
   }
 }
 
-// export function getCategoryTotalsByMonth(expenses) {
-//   const categoryMap = {
-//     Food: [],
-//     Transport: [],
-//     Utilities: [],
-//   };
+export function getCategoryTotalsByMonth(expenses: expenseType[]) {
+  const categoryMap: {
+    Food: number[];
+    Transport: number[];
+    Utilities: number[];
+  } = {
+    Food: [],
+    Transport: [],
+    Utilities: [],
+  };
 
-//   const monthLabels: string[] = [];
+  const monthLabels: string[] = [];
 
-//   // Group expenses by month and category
-//   const grouped = {};
+  // Group expenses by month and category
+  const grouped: { [key: string]: yearMonth } = {
+    '': { Food: 0, Transport: 0, Utilities: 0 },
+  };
 
-//   expenses.forEach((expense: expenseType) => {
-//     const date = new Date(expense.date);
-//     const month = date.toLocaleString('default', { month: 'short' });
-//     const yearMonth = `${month} ${date.getFullYear()}`;
+  expenses.forEach((expense: expenseType) => {
+    const date = new Date(expense.date);
+    const month = date.toLocaleString('default', { month: 'short' });
+    const yearMonth = `${month} ${date.getFullYear()}`;
 
-//     if (!grouped[yearMonth]) {
-//       grouped[yearMonth] = {
-//         Food: 0,
-//         Transport: 0,
-//         Utilities: 0,
-//       };
-//       monthLabels.push(yearMonth);
-//     }
+    if (!grouped[yearMonth]) {
+      grouped[yearMonth] = {
+        Food: 0,
+        Transport: 0,
+        Utilities: 0,
+      };
+      monthLabels.push(yearMonth);
+    }
 
-//     if (grouped[yearMonth][expense.category] !== undefined) {
-//       grouped[yearMonth][expense.category] += expense.amount;
-//     }
-//   });
+    if (grouped[yearMonth][expense.category] !== undefined) {
+      grouped[yearMonth][expense.category] += expense.amount;
+    }
+  });
 
-//   // Fill category arrays
-//   monthLabels.forEach((month) => {
-//     categoryMap.Food.push(grouped[month].Food || 0);
-//     categoryMap.Transport.push(grouped[month].Transport || 0);
-//     categoryMap.Utilities.push(grouped[month].Utilities || 0);
-//   });
+  // Fill category arrays
+  monthLabels.forEach((yearMonth) => {
+    grouped[yearMonth] = grouped[yearMonth] ?? {
+      Food: 0,
+      Transport: 0,
+      Utilities: 0,
+    };
+    categoryMap.Food.push(grouped[yearMonth].Food || 0);
+    categoryMap.Transport.push(grouped[yearMonth].Transport || 0);
+    categoryMap.Utilities.push(grouped[yearMonth].Utilities || 0);
+  });
 
-//   return {
-//     foodData: categoryMap.Food,
-//     transportData: categoryMap.Transport,
-//     utilitiesData: categoryMap.Utilities,
-//     months: monthLabels,
-//   };
-// }
+  return {
+    foodData: categoryMap.Food,
+    transportData: categoryMap.Transport,
+    utilitiesData: categoryMap.Utilities,
+    months: monthLabels,
+  };
+}

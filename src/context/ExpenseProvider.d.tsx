@@ -1,5 +1,5 @@
 export type expenseType = {
-  id?: number;
+  id?: string;
   title: string;
   category: 'Food' | 'Transport' | 'Utilities';
   amount: number;
@@ -12,3 +12,9 @@ export interface ExpenseContextType {
   // changeBalance: (amount: number) => void;
   addExpense?: (expense: expenseType) => void;
 }
+
+export type yearMonth = {
+  Food: number;
+  Transport: number;
+  Utilities: number;
+};

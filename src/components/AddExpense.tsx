@@ -3,10 +3,10 @@ import Input from '../ui/Input';
 import Button from '../ui/Button';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import type { expenseType } from '../context/ExpenseProvider.d';
 import { formatDate } from '../context/expenseFunctions';
 import { useExpenseContext } from '../context/useExpenseContext';
+import { toast } from 'react-toastify';
 
 const AddExpense: React.FC = () => {
   const {
@@ -22,13 +22,32 @@ const AddExpense: React.FC = () => {
     if (addExpense) {
       addExpense({
         ...data,
+        id: new Date().toISOString(),
         date: formatDate(data.date),
         title: data.title[0].toUpperCase() + data.title.slice(1),
       });
-      toast.success('Expense added successfully!');
+      toast('Expense Added Successfully !', {
+        position: 'top-center',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       reset();
     } else {
-      toast.error('Failed to add expense: addExpense is undefined.');
+      toast.error('Failed to add expense: addExpense is undefined.', {
+        position: 'top-center',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
   return (

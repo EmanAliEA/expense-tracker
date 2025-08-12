@@ -22,7 +22,7 @@ const Input: React.FC<Props> = ({ placeholder, type = 'text', register }) => {
             required: 'This field is required',
           })}
         />
-        <datalist id="browsers">
+        <datalist id="browsers" data-testid="browser-datalist">
           <option value="Food" />
           <option value="Transport" />
           <option value="Utilities" />
