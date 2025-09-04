@@ -11,9 +11,9 @@ const TransactionItem: React.FC<Props> = ({ item }) => {
   return (
     <li
       key={item.id}
-      className=" relative grid grid-cols-3 items-center  text-xl w-full  mt-5 py-1 "
+      className=" relative grid  grid-cols-[1fr_1fr_.5fr] sm:grid-cols-[1fr_1fr_1fr] items-center text-xs sm:text-xl w-full  mt-5 py-1 "
     >
-      <div className="flex gap-2 items-center">
+      <div className="flex sm:gap-2 items-center">
         <img
           src={getCategoryIcon(item.category)}
           alt={item.title}
@@ -21,7 +21,7 @@ const TransactionItem: React.FC<Props> = ({ item }) => {
         />
         <p>{item.title}</p>
       </div>
-      <p className="text-sm text-center ">{item.date}</p>
+      <p className="text-xs sm:text-sm text-center ">{item.date}</p>
       <p className="justify-self-end">${item.amount}</p>
     </li>
   );

@@ -73,7 +73,7 @@ const AddExpense: React.FC = () => {
           type="date"
           register={register}
         />
-        <Button style="grow">Add</Button>
+        <Button style="grow-1 w-[100%]">Add</Button>
       </form>
     </div>
   );

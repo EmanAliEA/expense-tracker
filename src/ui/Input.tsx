@@ -17,7 +17,7 @@ const Input: React.FC<Props> = ({ placeholder, type = 'text', register }) => {
           type="text"
           placeholder="Category"
           list="browsers"
-          className="w-[48%] p-2 border-1 border-gray-400 rounded-md grow-1"
+          className="w-[100%] sm:w-[48%] p-2 border-1 border-gray-400 rounded-md grow-1"
           {...register(placeholder?.toLowerCase() || '', {
             required: 'This field is required',
           })}
