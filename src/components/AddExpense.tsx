@@ -13,6 +13,7 @@ const AddExpense: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<expenseType>();
 
@@ -72,6 +73,7 @@ const AddExpense: React.FC = () => {
           placeholder={`${errors.date?.message || 'Date'}`}
           type="date"
           register={register}
+          control={control}
         />
         <Button style="grow-1 w-[100%]">Add</Button>
       </form>

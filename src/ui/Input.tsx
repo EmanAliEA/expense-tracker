@@ -1,15 +1,22 @@
-// import { DatePicker } from '@mui/x-date-pickers';
 // import React, { useState } from 'react';
+
+import BasicDatePicker from './DatePicker';
 
 interface Props {
   type?: string;
   placeholder?: string;
   style?: string;
   register: any;
+  control?: any;
 }
 
-const Input: React.FC<Props> = ({ placeholder, type = 'text', register }) => {
-  // if (type === 'date') return <DatePicker label="Basic date picker" />
+const Input: React.FC<Props> = ({
+  placeholder,
+  type = 'text',
+  register,
+  control,
+}) => {
+  if (type === 'date') return <BasicDatePicker control={control} />;
   if (type === 'list') {
     return (
       <>
@@ -30,6 +37,7 @@ const Input: React.FC<Props> = ({ placeholder, type = 'text', register }) => {
       </>
     );
   }
+
   return (
     <input
       placeholder={placeholder}
