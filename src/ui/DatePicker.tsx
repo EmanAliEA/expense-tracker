@@ -15,7 +15,7 @@ const BasicDatePicker: React.FC<Props> = ({
   label = 'Date',
 }) => {
   return (
-    <div className="w-[48%] p-2 rounded-md grow-1">
+    <div className="w-[48%] rounded-md grow-1 text-white">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Controller
           name={name}
@@ -32,20 +32,40 @@ const BasicDatePicker: React.FC<Props> = ({
                   sx: {
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
-                        borderColor: '#99a1af', // Change to your desired color
+                        borderColor: '#fff',
                       },
                       '&:hover fieldset': {
-                        borderColor: '#4f46e5', // On hover
+                        borderColor: '#fff',
                       },
                       '&.Mui-focused fieldset': {
-                        borderColor: '#22d3ee', // On focus
-                      },
-                      '& .MuiSvgIcon-root': {
-                        color: '#ffffff', // or any color you want
+                        borderColor: '#fff',
                       },
                     },
-                    input: { color: '#fff', background: '#111' }, // input text color and background
-                    label: { color: '#fff' }, // label color
+                    input: { color: '#fff', background: '#111' },
+                    label: { color: '#fff' },
+                    '& .MuiSvgIcon-root': {
+                      color: '#fff',
+                    },
+                  },
+                  InputProps: {
+                    style: { background: '#111', color: '#fff' },
+                  },
+                  InputLabelProps: {
+                    style: { color: '#fff' },
+                  },
+                },
+                popper: {
+                  sx: {
+                    '& .MuiPaper-root': {
+                      backgroundColor: '#111',
+                      color: '#fff',
+                    },
+                    '& .MuiPickersDay-root': {
+                      color: '#fff',
+                    },
+                    '& .Mui-selected': {
+                      backgroundColor: '#333 !important',
+                    },
                   },
                 },
               }}

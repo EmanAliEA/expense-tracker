@@ -24,7 +24,7 @@ const Input: React.FC<Props> = ({
           type="text"
           placeholder="Category"
           list="browsers"
-          className="w-[100%] sm:w-[48%] p-2 border-1 border-gray-400 rounded-md grow-1"
+          className="w-[100%] sm:w-[48%] outline-none placeholder:text-sm sm:placeholder:text-lg   px-1  sm:px-2 border-1 border-gray-400 rounded-md grow-1"
           {...register(placeholder?.toLowerCase() || '', {
             required: 'This field is required',
           })}
@@ -42,7 +42,7 @@ const Input: React.FC<Props> = ({
     <input
       placeholder={placeholder}
       type={type}
-      className="w-[48%] p-2 border-1 border-gray-400 rounded-md grow-1"
+      className="w-[48%] p-1 sm:p-3 border-1 sm:text-sm placeholder:text-base  outline-none border-gray-400 rounded-md grow-1"
       {...register(placeholder?.toLowerCase(), {
         required: 'This field is required',
       })}

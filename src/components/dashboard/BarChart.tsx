@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useExpenseContext } from '../../context/useExpenseContext';
 import { getCategoryTotalsByMonth } from '../../context/expenseFunctions';
@@ -11,26 +10,28 @@ export default function StackedBarChart() {
     getCategoryTotalsByMonth(expenses);
 
   return (
-    <BarChart
-      height={300}
-      width={300}
-      series={[
-        { data: foodData, label: 'Food', id: 'foodId', stack: 'total' },
-        {
-          data: transportData,
-          label: 'Transport',
-          id: 'transportId',
-          stack: 'total',
-        },
-        {
-          data: utilitiesData,
-          label: 'Utilities',
-          id: 'utilitiesId',
-          stack: 'total',
-        },
-      ]}
-      xAxis={[{ data: months, scaleType: 'band' }]}
-      yAxis={[{ width: 60 }]}
-    />
+    <div className="w-full max-w-full sm:max-w-xl mx-auto">
+      <BarChart
+        height={300}
+        widths="100%"
+        series={[
+          { data: foodData, label: 'Food', id: 'foodId', stack: 'total' },
+          {
+            data: transportData,
+            label: 'Transport',
+            id: 'transportId',
+            stack: 'total',
+          },
+          {
+            data: utilitiesData,
+            label: 'Utilities',
+            id: 'utilitiesId',
+            stack: 'total',
+          },
+        ]}
+        xAxis={[{ data: months, scaleType: 'band' }]}
+        yAxis={[{ width: 60 }]}
+      />
+    </div>
   );
 }
